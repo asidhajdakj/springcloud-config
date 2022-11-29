@@ -1,0 +1,26 @@
+server:
+  port: 80
+
+eureka:
+  client:
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka
+
+feign:
+  hystrix:
+    enabled: true
+  #默认feign+hystrix默认超时1s，需来两者配置来增加时间
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
